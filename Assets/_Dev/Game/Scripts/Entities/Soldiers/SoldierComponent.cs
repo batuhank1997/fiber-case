@@ -6,5 +6,10 @@ namespace _Dev.Game.Scripts.Entities.Soldiers
     public class SoldierComponent : MonoBehaviour
     {
         private Soldier _soldier = new BasicSoldier();
+
+        public Soldier GetSoldier()
+        {
+            return _soldier;
+        }
     }
 }
