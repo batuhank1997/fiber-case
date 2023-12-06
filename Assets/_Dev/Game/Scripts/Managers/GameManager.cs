@@ -15,6 +15,7 @@ namespace _Dev.Game.Scripts.Managers
             try
             {
                 //game systems initilization
+                WaveManager.Instance.Initialize();
             }
             catch (Exception e)
             {

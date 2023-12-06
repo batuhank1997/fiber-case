@@ -1,27 +1,18 @@
 ﻿using System.Linq;
 using _Dev.Game.Scripts.Entities.Enemies;
 using _Dev.Game.Scripts.Entities.Enemies.Base;
-using _Dev.Utilities.Singleton;
 using UnityEngine;
 
 namespace _Dev.Game.Scripts.Factories
 {
     public static class EnemyFactory
     {
-        public static EnemyComponent Create<T>() where T : Enemy
+        public static Enemy Create(Enemy enemy)
         {
-            var enemyPrefab = EnemyContainer.Instance.Enemies
-                .First(e => e.GetEnemy().GetType() == typeof(T));
+            var enemyPrefab = EnemyContainerSo.Instance.EnemyPrefabs.First(e => e.GetType() == enemy.GetType());
+            var enemyComponent = Object.Instantiate(enemyPrefab);
 
-            var enemy = Object.Instantiate(enemyPrefab);
-        
-            return enemy;
+            return enemyComponent;
         }
-    }
-
-    [CreateAssetMenu(fileName = "SoldierContainer", menuName = "ScriptableObjects/SoldierContainer", order = 1)]
-    public class EnemyContainer : ScriptableSingleton<EnemyContainer>
-    {
-        public EnemyComponent[] Enemies;
     }
 }

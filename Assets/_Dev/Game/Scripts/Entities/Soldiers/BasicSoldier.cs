@@ -4,6 +4,9 @@ namespace _Dev.Game.Scripts.Entities.Soldiers
 {
     public class BasicSoldier : Soldier
     {
-        
+        protected override void Attack()
+        {
+            
+        }
     }
 }

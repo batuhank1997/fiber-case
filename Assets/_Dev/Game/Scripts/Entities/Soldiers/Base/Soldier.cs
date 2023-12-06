@@ -2,14 +2,7 @@
 
 namespace _Dev.Game.Scripts.Entities.Soldiers.Base
 {
-    public abstract class Soldier : IAttacker
+    public abstract class Soldier : Attacker
     {
-        public float GetAttackInterval { get; }
-        public int GetAttackDamage { get; }
-        
-        public void Attack()
-        {
-            
-        }
     }
 }

@@ -4,7 +4,7 @@ namespace _Dev.Game.Scripts.Entities.Enemies
 {
     public class BossEnemy : Enemy
     {
-        public override void Attack()
+        protected override void Attack()
         {
             
         }

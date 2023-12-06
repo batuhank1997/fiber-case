@@ -1,27 +1,18 @@
 ﻿using System.Linq;
 using _Dev.Game.Scripts.Entities.Soldiers;
 using _Dev.Game.Scripts.Entities.Soldiers.Base;
-using _Dev.Utilities.Singleton;
 using UnityEngine;
 
 namespace _Dev.Game.Scripts.Factories
 {
     public static class SoldierFactory
     {
-        public static SoldierComponent Create<T>() where T : Soldier
+        public static Soldier Create()
         {
-            var soldierPrefab = SoldierContainer.Instance.Soldiers
-                .First(s => s.GetSoldier().GetType() == typeof(T));
+            var soldierPrefab = SoldierContainerSo.Instance.SoldierPrefab;
+            var soldierComponent = Object.Instantiate(soldierPrefab);
 
-            var soldier = Object.Instantiate(soldierPrefab);
-            
-            return soldier;
+            return soldierComponent;
         }
-    }
-
-    [CreateAssetMenu(fileName = "SoldierContainer", menuName = "ScriptableObjects/SoldierContainer", order = 1)]
-    public class SoldierContainer : ScriptableSingleton<SoldierContainer>
-    {
-        public SoldierComponent[] Soldiers;
     }
 }

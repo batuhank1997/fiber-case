@@ -5,10 +5,7 @@ namespace _Dev.Game.Scripts.Entities.Turrets
 {
     public class Turret1 : Turret
     {
-        public override float GetAttackInterval => 1;
-        public override int GetAttackDamage => 10;
-
-        public override void Attack()
+        protected override void Attack()
         {
             Debug.Log($"attack!!");
         }
