@@ -5,7 +5,7 @@ namespace _Dev.Game.Scripts.Entities.Interface
 {
     public interface IAttacker
     {
-        int GetAttackInterval { get; }
+        float GetAttackInterval { get; }
         int GetAttackDamage { get; }
         void Attack();
         public IEnumerator StartAttackRoutine()

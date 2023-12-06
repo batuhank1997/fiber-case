@@ -5,7 +5,7 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
 {
     public abstract class Enemy : Unit, IAttacker
     {
-        public int GetAttackInterval { get; }
+        public float GetAttackInterval { get; }
         public int GetAttackDamage { get; }
 
         private MoverComponent _mover;

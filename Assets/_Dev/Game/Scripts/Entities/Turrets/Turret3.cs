@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace _Dev.Game.Scripts.Entities.Turrets
 {
-    public class Turret1 : Turret
+    public class Turret3 : Turret
     {
-        public override float GetAttackInterval => 1;
-        public override int GetAttackDamage => 10;
+        public override float GetAttackInterval => 0.5f;
+        public override int GetAttackDamage => 20;
 
         public override void Attack()
         {
