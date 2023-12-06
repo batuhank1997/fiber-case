@@ -1,10 +1,12 @@
-﻿namespace _Dev.Game.Scripts.Entities.Interface
+﻿using System.Collections;
+
+namespace _Dev.Game.Scripts.Entities.Interface
 {
     public interface IAttacker
     {
         int GetAttackInterval { get; }
         int GetAttackDamage { get; }
-        void StartAttack();
+        IEnumerator StartAttackRoutine();
         void Attack();
     }
 }

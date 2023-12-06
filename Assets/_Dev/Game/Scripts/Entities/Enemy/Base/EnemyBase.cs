@@ -1,22 +1,26 @@
+using System.Collections;
 using _Dev.Game.Scripts.Components;
 using _Dev.Game.Scripts.Entities.Interface;
+using UnityEngine;
 
 namespace _Dev.Game.Scripts.Entities.Enemy.Base
 {
-    public class EnemyBase : Unit, IAttacker
+    public abstract class EnemyBase : Unit, IAttacker
     {
         public int GetAttackInterval { get; }
         public int GetAttackDamage { get; }
 
         private MoverComponent _mover;
 
-        public void StartAttack()
+        public IEnumerator StartAttackRoutine()
         {
-            
+            while (true)
+            {
+                Attack();
+                yield return new WaitForSeconds(GetAttackInterval);
+            }
         }
 
-        public void Attack()
-        {
-        }
+        public abstract void Attack();
     }
 }
