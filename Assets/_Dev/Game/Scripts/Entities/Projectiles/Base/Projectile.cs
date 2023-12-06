@@ -1,4 +1,4 @@
-﻿namespace _Dev.Game.Scripts.Entities.Projectile
+﻿namespace _Dev.Game.Scripts.Entities.Projectiles.Base
 {
     public abstract class Projectile
     {

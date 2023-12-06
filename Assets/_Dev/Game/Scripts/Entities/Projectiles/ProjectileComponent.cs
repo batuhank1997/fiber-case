@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using _Dev.Game.Scripts.Entities.Projectiles.Base;
+using UnityEngine;
 
-namespace _Dev.Game.Scripts.Entities.Projectile
+namespace _Dev.Game.Scripts.Entities.Projectiles
 {
     public class ProjectileComponent : MonoBehaviour
     {
-        private Projectile _projectile = new BasicProjectile();
+        private Base.Projectile _projectile = new BasicProjectile();
 
         private void OnTriggerEnter(Collider other)
         {

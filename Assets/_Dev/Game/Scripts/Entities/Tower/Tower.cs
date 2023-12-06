@@ -1,8 +1,6 @@
-﻿using UnityEngine;
-
-namespace _Dev.Game.Scripts.Entities.Tower
+﻿namespace _Dev.Game.Scripts.Entities.Tower
 {
-    public class Tower : MonoBehaviour
+    public class Tower : Unit
     {
         
     }

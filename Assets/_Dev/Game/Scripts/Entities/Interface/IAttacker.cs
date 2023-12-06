@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 
 namespace _Dev.Game.Scripts.Entities.Interface
 {
@@ -6,7 +7,14 @@ namespace _Dev.Game.Scripts.Entities.Interface
     {
         int GetAttackInterval { get; }
         int GetAttackDamage { get; }
-        IEnumerator StartAttackRoutine();
         void Attack();
+        public IEnumerator StartAttackRoutine()
+        {
+            while (true)
+            {
+                Attack();
+                yield return new WaitForSeconds(GetAttackInterval);
+            }
+        }
     }
 }
