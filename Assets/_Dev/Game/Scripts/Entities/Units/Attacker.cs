@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-namespace _Dev.Game.Scripts.Entities.Interface
+namespace _Dev.Game.Scripts.Entities.Units
 {
     [Serializable]
-    public abstract class Attacker : MonoBehaviour
+    public abstract class Attacker : Unit
     {
         [SerializeField] protected float m_attackInterval;
         [SerializeField] protected int m_attackDamage;

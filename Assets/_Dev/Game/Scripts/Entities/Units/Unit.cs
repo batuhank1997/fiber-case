@@ -1,15 +1,17 @@
 ﻿using _Dev.Game.Scripts.Components;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace _Dev.Game.Scripts.Entities
+namespace _Dev.Game.Scripts.Entities.Units
 {
+    [RequireComponent(typeof(HealthComponent))]
     public abstract class Unit : MonoBehaviour
     {
-        private HealthComponent _health;
+        [SerializeField] private HealthComponent m_health;
         
         public HealthComponent GetHealth()
         {
-            return _health;
+            return m_health;
         }
 
         private void Die()

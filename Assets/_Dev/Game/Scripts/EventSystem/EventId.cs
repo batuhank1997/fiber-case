@@ -9,6 +9,7 @@ namespace _Dev.Game.Scripts.EventSystem
         #region InGame
         on_wave_started = 10,
         on_wave_ended = 11,
+        on_enemy_died = 12,
         #endregion
     }
 }

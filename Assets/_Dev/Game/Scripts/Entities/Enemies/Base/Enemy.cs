@@ -1,5 +1,5 @@
 using System;
-using _Dev.Game.Scripts.Entities.Interface;
+using _Dev.Game.Scripts.Entities.Units;
 
 namespace _Dev.Game.Scripts.Entities.Enemies.Base
 {
