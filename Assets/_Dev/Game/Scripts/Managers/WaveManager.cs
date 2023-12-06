@@ -52,7 +52,7 @@ namespace _Dev.Game.Scripts.Managers
         {
             var createdEnemy = EnemyFactory.Create(enemy);
             createdEnemy.transform.position = m_spawnPoint.position;
-            createdEnemy.StartMoving(m_waveTarget);
+            createdEnemy.StartMoving(m_waveTarget.transform);
         }
     }
 }
