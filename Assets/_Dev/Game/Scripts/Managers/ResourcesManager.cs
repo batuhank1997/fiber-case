@@ -10,29 +10,30 @@ namespace _Dev.Game.Scripts.Managers
         
         public static void AddResource(int amount)
         {
-            var currentAmount = SaveManager.LoadValue(RESOURCE_ID.ToString(), 0);
+            var currentAmount = SaveManager.LoadValue(RESOURCE_ID, 0);
             var newAmount = currentAmount + amount;
+            SaveManager.SaveValue(RESOURCE_ID, newAmount);
             EventSystemManager.InvokeEvent(EventId.on_resource_added, new IntArguments(amount));
         }
     
         public static void ConsumeResource(int amount)
         {
-            var currentAmount = SaveManager.LoadValue(RESOURCE_ID.ToString(), 0);
+            var currentAmount = SaveManager.LoadValue(RESOURCE_ID, 0);
             var newAmount = Mathf.Max(0, currentAmount - amount);
-            SaveManager.SaveValue(RESOURCE_ID.ToString(), newAmount);
+            SaveManager.SaveValue(RESOURCE_ID, newAmount);
             EventSystemManager.InvokeEvent(EventId.on_resource_consumed, new IntArguments(amount));
         }
         
         public static void ResetResource()
         {
             EventSystemManager.InvokeEvent(EventId.on_resource_reset);
-            SaveManager.SaveValue(RESOURCE_ID.ToString(), 0);
+            SaveManager.SaveValue(RESOURCE_ID, 0);
         }
     
         public static int GetResource()
         {
-            if (SaveManager.IsKeyExist(RESOURCE_ID.ToString()))
-                return SaveManager.LoadValue(RESOURCE_ID.ToString(), 0);
+            if (SaveManager.IsKeyExist(RESOURCE_ID))
+                return SaveManager.LoadValue(RESOURCE_ID, 0);
             
             return 0;
         }
