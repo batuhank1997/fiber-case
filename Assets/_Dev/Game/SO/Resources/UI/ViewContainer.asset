@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6179d45797fb7144aad208c321810cfc, type: 3}
   m_Name: ViewContainer
   m_EditorClassIdentifier: 
-  m_views: []
+  m_views:
+  - {fileID: 5986450200311635089, guid: 4ae44449410c5944bbd2e824445e63f2, type: 3}
+  - {fileID: 4249720368959420477, guid: e17fccdb021ed1a4184b2e7c9c772b38, type: 3}

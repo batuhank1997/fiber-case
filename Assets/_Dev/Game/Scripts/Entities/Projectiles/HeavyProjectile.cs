@@ -2,6 +2,6 @@
 {
     public class HeavyProjectile : Projectiles.Base.Projectile
     {
-        protected override int _damageAmount => 30;
+        protected override int _damageAmount => 60;
     }
 }
