@@ -19,7 +19,7 @@ namespace _Dev.Game.Scripts.Entities.Units
         protected abstract void Attack(Unit enemy);
         protected abstract bool IsAttackTarget(Unit unit);
         
-        protected IEnumerator StartDetectingRoutine()
+        protected virtual IEnumerator StartDetectingRoutine()
         {
             while (true)
             {

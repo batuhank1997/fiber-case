@@ -27,18 +27,28 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
 
         private int _boughtTurretsAmount = 0;
         private const string TURRETS_AMOUNT_KEY = "turrets";
+        private BuyView _buyView;
         
         private void OnEnable()
         {
             SetLayer();
             InitTurrets();
             EventSystemManager.AddListener(EventId.on_object_clicked, OnObjectClick);
+            EventSystemManager.AddListener(EventId.on_view_shown, OnViewShown);
             EventSystemManager.AddListener(EventId.on_view_closed, OnUIClosed);
         }
+        
+        private void OnViewShown(EventArgs obj)
+        {
+            if (_buyView && ((TypeArguments)obj).Type == typeof(TurretUpgradeView))
+                _buyView.Hide();
+        }
+
 
         private void OnDisable()
         {
             EventSystemManager.RemoveListener(EventId.on_object_clicked, OnObjectClick);
+            EventSystemManager.RemoveListener(EventId.on_view_shown, OnViewShown);
             EventSystemManager.RemoveListener(EventId.on_view_closed, OnUIClosed);
         }
 
@@ -48,8 +58,9 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
                 return;
             
             SetMaterial(m_selectedMaterial);
-            var buyView = ViewFactory.GetOrCreate<BuyView>() as BuyView;
-            buyView.SetPanel(OnBuyTurret, OnBuySoldier);
+            
+            _buyView = ViewFactory.GetOrCreate<BuyView>() as BuyView;
+            _buyView.SetPanel(OnBuyTurret, OnBuySoldier);
         }
         
         private void OnUIClosed(EventArgs obj)
@@ -85,6 +96,7 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         {
             var soldier = SoldierFactory.Create();
             soldier.transform.position = m_soldierSpawnPoint.position;
+            soldier.Init();
         }
 
         private void SpawnTurret()

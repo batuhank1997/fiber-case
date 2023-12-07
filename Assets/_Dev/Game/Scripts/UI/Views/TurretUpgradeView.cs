@@ -1,5 +1,6 @@
 ﻿using System;
 using _Dev.Game.Scripts.Entities.Turrets.Base;
+using _Dev.Game.Scripts.EventSystem;
 using _Dev.Game.Scripts.UI.Views.Base;
 using TMPro;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace _Dev.Game.Scripts.UI.Views
 
         protected override void OnDisable()
         {
+            Debug.Log("VIEW CLOSED");
             m_upgradeButton.onClick.RemoveAllListeners();
             base.OnDisable();
         }

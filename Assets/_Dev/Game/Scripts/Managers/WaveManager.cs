@@ -89,6 +89,8 @@ namespace _Dev.Game.Scripts.Managers
         
         private void SpawnEnemy(Enemy enemy)
         {
+            if (m_waveTarget == null) return;
+            
             var createdEnemy = EnemyFactory.Create(enemy);
             createdEnemy.transform.position = m_spawnPoint.position;
             createdEnemy.Init(m_waveTarget.transform);

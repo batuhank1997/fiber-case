@@ -21,14 +21,15 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
 
         private int _turretLevel = 1;
         private string _turretKey;
+        private Turret _turret;
+        
+        private TurretUpgradeView _upgradeView;
 
         protected override float _attackInterval
         {
             get => _turret.AttackInterval;
             set => _delay = new WaitForSeconds(value);
         }
-
-        private Turret _turret;
         
         public void Init(int index)
         {
@@ -38,12 +39,22 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
             StartCoroutine(StartDetectingRoutine());
             EventSystemManager.AddListener(EventId.on_object_clicked, OnObjectClicked);
             EventSystemManager.AddListener(EventId.on_view_closed, OnUIClosed);
+            EventSystemManager.AddListener(EventId.on_view_shown, OnViewShown);
+        }
+        
+        
+        private void OnViewShown(EventArgs obj)
+        {
+            Debug.Log("TURRET SHOWN");
+            if (_upgradeView && ((TypeArguments)obj).Type == typeof(BuyView))
+                _upgradeView.Hide();
         }
 
         private void OnDestroy()
         {
             EventSystemManager.RemoveListener(EventId.on_object_clicked, OnObjectClicked);
             EventSystemManager.RemoveListener(EventId.on_view_closed, OnUIClosed);
+            EventSystemManager.RemoveListener(EventId.on_view_shown, OnViewShown);
         }
         
         public Turret GetTurret()
@@ -105,8 +116,8 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
 
         private void UpdateUpgradePanel()
         {
-            var upgradePanel = ViewFactory.GetOrCreate<TurretUpgradeView>() as TurretUpgradeView;
-            upgradePanel.SetPanel(this, UpgradeTurret);
+            _upgradeView = ViewFactory.GetOrCreate<TurretUpgradeView>() as TurretUpgradeView;
+            _upgradeView.SetPanel(this, UpgradeTurret);
         }
         
         protected override void Attack(Unit enemy)
