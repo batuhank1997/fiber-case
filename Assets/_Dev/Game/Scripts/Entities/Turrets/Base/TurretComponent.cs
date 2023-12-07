@@ -74,11 +74,17 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
         {
             var projectile = Instantiate(m_projectilePrefab, m_projectileSpawnPoint.position, Quaternion.identity);
             projectile.Init(_turret.Projectile, enemy.transform);
+            enemy.GetHealth().OnDie += () =>
+            {
+                if (projectile)
+                    Destroy(projectile.gameObject);
+            };
         }
         
         protected override bool IsAttackTarget(Unit unit)
         {
            return unit is Enemy;
         }
+
     }
 }

@@ -97,6 +97,9 @@ namespace _Dev.Game.Scripts.Managers
 
         private int GetCurrentWaveEnemiesCount()
         {
+            if (_currentWaveIndex > m_waves.Count - 1)
+                _currentWaveIndex = 0;
+            
             var wave = m_waves[_currentWaveIndex];
             return wave.Enemies.Count;
         }
