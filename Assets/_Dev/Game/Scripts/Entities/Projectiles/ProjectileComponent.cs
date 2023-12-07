@@ -1,5 +1,4 @@
-﻿using System;
-using _Dev.Game.Scripts.Entities.Units;
+﻿using _Dev.Game.Scripts.Entities.Units;
 using UnityEngine;
 
 namespace _Dev.Game.Scripts.Entities.Projectiles

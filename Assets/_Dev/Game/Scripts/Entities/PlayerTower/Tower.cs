@@ -3,7 +3,7 @@ using _Dev.Game.Scripts.Entities.Turrets.Base;
 using _Dev.Game.Scripts.Entities.Units;
 using UnityEngine;
 
-namespace _Dev.Game.Scripts.Entities.Tower
+namespace _Dev.Game.Scripts.Entities.PlayerTower
 {
     public class Tower : Unit
     {

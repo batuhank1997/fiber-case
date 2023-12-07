@@ -10,38 +10,15 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
     {
         [SerializeField] protected ProjectileComponent m_projectilePrefab;
         [SerializeField] protected Transform m_projectileSpawnPoint;
-        [SerializeField] private float m_radius;
         
         private Turret _turret;
         
-        private readonly WaitForSeconds _detectInterval = new WaitForSeconds(1f);
-
-        private Unit _target;
-
+        private const int _maxColliders = 10;
+        
         public void Init()
         {
             SetTurret(new Turret1());
             StartCoroutine(StartDetectingRoutine());
-        }
-
-        private IEnumerator StartDetectingRoutine()
-        {
-            while (true)
-            {
-                Detect();
-                yield return _detectInterval;
-            }
-        }
-
-        private void Detect()
-        {
-            var colliders = Physics.OverlapSphere(transform.position, m_radius);
-
-            if (!colliders[0].TryGetComponent(out Unit unit)) return;
-            if (unit is not Enemy) return;
-
-            _target = unit;
-            Attack(_target);
         }
         
         private void SetTurret(Turret turret)
@@ -53,6 +30,20 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
         {
             var projectile = Instantiate(m_projectilePrefab, m_projectileSpawnPoint.position, Quaternion.identity);
             projectile.Init(_turret.Projectile, enemy.transform);
+        }
+        
+        protected override void Detect()
+        {
+            var hitColliders = new Collider[_maxColliders];
+            var size = Physics.OverlapSphereNonAlloc(transform.position, m_radius, hitColliders);
+
+            for (var i = 0; i < size; i++)
+            {
+                if (!hitColliders[i].TryGetComponent(out Enemy enemy)) continue;
+                
+                _target = enemy;
+                Attack(_target);
+            }
         }
     }
 }

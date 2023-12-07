@@ -8,15 +8,21 @@ namespace _Dev.Game.Scripts.Entities.Units
     public abstract class Attacker : Unit
     {
         [SerializeField] protected float m_attackInterval;
-        [SerializeField] protected int m_attackDamage;
+        [SerializeField] protected float m_radius;
         
+        protected Unit _target;
+        
+        private readonly WaitForSeconds _detectInterval = new WaitForSeconds(1f);
+
+        protected abstract void Detect();
         protected abstract void Attack(Unit enemy);
-        public IEnumerator StartAttackRoutine(Unit enemy)
+        
+        protected IEnumerator StartDetectingRoutine()
         {
             while (true)
             {
-                Attack(enemy);
-                yield return new WaitForSeconds(m_attackInterval);
+                Detect();
+                yield return _detectInterval;
             }
         }
     }
