@@ -52,6 +52,9 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         
         private void SpawnTurret()
         {
+            if (_boughtTurretsAmount >= m_turretSpawnPoints.Count)
+                return;
+            
             var turret = Instantiate(m_turretPrefab, m_turretSpawnPoints[_boughtTurretsAmount].position, Quaternion.identity);
             turret.transform.SetParent(transform);
             turret.Init();

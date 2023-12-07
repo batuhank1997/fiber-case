@@ -17,14 +17,15 @@ namespace _Dev.Game.Scripts.Managers
         [SerializeField] private Transform m_spawnPoint;
         [SerializeField] private Tower m_waveTarget;
         
-        private readonly List<Enemy> _currentWaveEnemies = new List<Enemy>();
         private readonly WaitForSeconds _delayBetweenWaves = new WaitForSeconds(3);
         private WaitForSeconds _delayBetweenEnemies;
         private int _currentWaveIndex;
         private int _killedEnemiesCountInCurrentWave = 0;
+        private const string CURRENT_WAVE_KEY = "current_wave";
         
         public void Initialize()
         {
+            _currentWaveIndex = SaveManager.LoadValue(CURRENT_WAVE_KEY, 0);
             EventSystemManager.AddListener(EventId.on_enemy_died, OnEnemyDied);
             EventSystemManager.AddListener(EventId.on_wave_ended, ResetWaveData);
             StartWave();
@@ -50,7 +51,6 @@ namespace _Dev.Game.Scripts.Managers
         private void ResetWaveData(EventArgs obj)
         {
             _killedEnemiesCountInCurrentWave = 0;
-            _currentWaveEnemies.Clear();
         }
 
         public float GetWaveProgress()
@@ -67,7 +67,6 @@ namespace _Dev.Game.Scripts.Managers
         private IEnumerator WaveRoutine()
         {
             yield return _delayBetweenWaves;
-            
             var wave = m_waves[_currentWaveIndex];
             var enemies = wave.Enemies;
             var spawnInterval = wave.SpawnInterval;
@@ -85,12 +84,12 @@ namespace _Dev.Game.Scripts.Managers
         {
             EventSystemManager.InvokeEvent(EventId.on_wave_ended);
             _currentWaveIndex++;
+            SaveManager.SaveValue(CURRENT_WAVE_KEY, _currentWaveIndex);
         }
         
         private void SpawnEnemy(Enemy enemy)
         {
             var createdEnemy = EnemyFactory.Create(enemy);
-            _currentWaveEnemies.Add(createdEnemy);
             createdEnemy.transform.position = m_spawnPoint.position;
             createdEnemy.StartMoving(m_waveTarget.transform);
         }
