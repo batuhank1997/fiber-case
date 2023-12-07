@@ -15,6 +15,7 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
 
         private void OnEnable()
         {
+            gameObject.layer = (int)LayerId.Enemy;
             StartCoroutine(StartDetectingRoutine());
         }
 

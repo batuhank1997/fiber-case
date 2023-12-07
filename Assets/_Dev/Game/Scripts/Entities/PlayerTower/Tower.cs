@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _Dev.Game.Scripts.Entities.Enemies.Base;
 using _Dev.Game.Scripts.Entities.Turrets.Base;
 using _Dev.Game.Scripts.Entities.Units;
 using UnityEngine;
@@ -11,10 +12,10 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         
         private void Start()
         {
+            gameObject.layer = (int)LayerId.Player;
+            
             foreach (var turret in m_turrets)
-            {
                 turret.Init();
-            }
         }
     }
 }

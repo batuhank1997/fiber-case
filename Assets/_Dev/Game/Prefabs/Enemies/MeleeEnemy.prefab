@@ -50,9 +50,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: {fileID: 5814556563804220392}
   m_attackInterval: 1
-  m_attackDamage: 5
-  m_radius: 1
+  m_radius: 2
   m_mover: {fileID: 8216658600028860101}
+  m_attackDamage: 5
 --- !u!114 &5814556563804220392
 MonoBehaviour:
   m_ObjectHideFlags: 0

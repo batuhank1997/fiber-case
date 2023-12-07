@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using _Dev.Game.Scripts.Entities.Turrets.Base;
 using UnityEngine;
 
 namespace _Dev.Game.Scripts.Entities.Units
