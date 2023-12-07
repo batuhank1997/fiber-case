@@ -4,18 +4,8 @@ namespace _Dev.Game.Scripts.Entities.Turrets
 {
     public class Turret1 : Turret
     {
-        public override TurretData TurretData { get; }
+        public override TurretData TurretData => TurretDataContainerSo.Instance.Turret1Data;
         public override float AttackInterval => 1f;
         public override Projectiles.Base.Projectile Projectile => new BasicProjectile();
-        
-        public Turret1()
-        {
-            TurretData = new TurretData
-            {
-                Name = "Turret 1",
-                Level = 1,
-                TurretPrice = 100
-            };
-        }
     }
 }

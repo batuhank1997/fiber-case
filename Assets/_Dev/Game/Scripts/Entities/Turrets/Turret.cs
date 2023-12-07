@@ -1,4 +1,6 @@
-﻿namespace _Dev.Game.Scripts.Entities.Turrets
+﻿using System;
+
+namespace _Dev.Game.Scripts.Entities.Turrets
 {
     public abstract class Turret
     {
@@ -15,12 +17,5 @@
                 3 => new Turret3(),
             };
         }
-    }
-    
-    public class TurretData
-    {
-        public string Name;
-        public int Level;
-        public int TurretPrice;
     }
 }
