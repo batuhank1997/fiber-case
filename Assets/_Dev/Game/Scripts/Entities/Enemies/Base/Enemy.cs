@@ -11,16 +11,20 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
     [RequireComponent(typeof(MoverComponent))]
     public abstract class Enemy : Attacker
     {
-        [SerializeField] private MoverComponent m_mover;
-
+        [SerializeField] protected MoverComponent m_mover;
+        
+        protected Transform _mainTarget;
+        
         protected override float _attackInterval
         {
             get => m_attackInterval;
             set => _delay = new WaitForSeconds(value);
         }
 
-        private void OnEnable()
+        public void Init(Transform tower)
         {
+            _mainTarget = tower;
+            StartMoving(_mainTarget);
             _attackInterval = m_attackInterval;
             gameObject.layer = (int)LayerId.Enemy;
             m_health.OnDie += OnEnemyDie;
@@ -38,7 +42,7 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
             ResourcesManager.AddResource(100);
         }
 
-        public void StartMoving(Transform target)
+        protected void StartMoving(Transform target)
         {
             m_mover.SetMoveTarget(target);
         }

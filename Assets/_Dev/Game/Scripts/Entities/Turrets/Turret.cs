@@ -1,4 +1,6 @@
-﻿namespace _Dev.Game.Scripts.Entities.Turrets
+﻿using System;
+
+namespace _Dev.Game.Scripts.Entities.Turrets
 {
     public abstract class Turret
     {
@@ -13,6 +15,7 @@
                 1 => new Turret2(),
                 2 => new Turret3(),
                 3 => new Turret3(),
+                _ => throw new ArgumentOutOfRangeException()
             };
         }
     }

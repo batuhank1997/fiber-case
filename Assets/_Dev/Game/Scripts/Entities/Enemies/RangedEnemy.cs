@@ -1,3 +1,4 @@
+using System;
 using _Dev.Game.Scripts.Entities.Enemies.Base;
 using _Dev.Game.Scripts.Entities.Projectiles;
 using _Dev.Game.Scripts.Entities.Units;
@@ -16,10 +17,12 @@ namespace _Dev.Game.Scripts.Entities.Enemies
             var projectile = Instantiate(m_projectilePrefab, m_projectileSpawnPoint.position, Quaternion.identity);
             projectile.Init(new BasicProjectile(), enemy.transform);
             
-            enemy.GetHealth().OnDie += () =>
+            enemy.GetHealth().OnDie += delegate
             {
                 if (projectile)
-                    Destroy(projectile.gameObject);
+                    Destroy(projectile);
+                
+                m_mover.SetMoveTarget(_mainTarget.transform);
             };
         }
     }

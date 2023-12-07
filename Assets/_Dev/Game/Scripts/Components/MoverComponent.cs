@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Dev.Game.Scripts.Components
 {
@@ -13,7 +12,7 @@ namespace _Dev.Game.Scripts.Components
         {
             _target = target;
         }
-
+        
         private void Update()
         {
             if (_target == null) return;

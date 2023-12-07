@@ -5,7 +5,7 @@ namespace _Dev.Game.Scripts.Entities.Projectiles
 {
     public class ExplosiveProjectile : Base.Projectile
     {
-        protected override int _damageAmount => 20;
+        protected override int _damageAmount => ProjectileDataContainerSo.Instance.ExplosiveProjectileData.DamageAmount;
 
         public override void DealDamage(Unit unit)
         {
