@@ -6,7 +6,7 @@ namespace _Dev.Game.Scripts.Entities.Projectiles.Base
     {
         protected abstract int _damageAmount { get; }
    
-        public void DealDamage(Unit unit)
+        public virtual void DealDamage(Unit unit)
         {
             unit.GetHealth().Damage(_damageAmount);
         }

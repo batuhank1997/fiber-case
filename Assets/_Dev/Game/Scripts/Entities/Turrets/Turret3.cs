@@ -6,7 +6,7 @@ namespace _Dev.Game.Scripts.Entities.Turrets
     {
         public override TurretData TurretData { get; }
         public override float AttackInterval => 0.5f;
-        public override Projectiles.Base.Projectile Projectile => new SuperProjectile();
+        public override Projectiles.Base.Projectile Projectile => new ExplosiveProjectile();
         
         public Turret3()
         {
