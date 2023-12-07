@@ -40,6 +40,7 @@ namespace _Dev.Game.Scripts.Entities.Units
                 
                 _target = unit;
                 Attack(_target);
+                break;
             }
         }
     }
