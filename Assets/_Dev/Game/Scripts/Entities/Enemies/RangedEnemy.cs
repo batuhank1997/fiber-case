@@ -15,6 +15,12 @@ namespace _Dev.Game.Scripts.Entities.Enemies
             StopMoving();
             var projectile = Instantiate(m_projectilePrefab, m_projectileSpawnPoint.position, Quaternion.identity);
             projectile.Init(new BasicProjectile(), enemy.transform);
+            
+            enemy.GetHealth().OnDie += () =>
+            {
+                if (projectile)
+                    Destroy(projectile.gameObject);
+            };
         }
     }
 }

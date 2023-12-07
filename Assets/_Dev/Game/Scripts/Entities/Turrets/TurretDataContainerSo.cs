@@ -19,5 +19,6 @@ namespace _Dev.Game.Scripts.Entities.Turrets
         public string Name;
         public int Level;
         public int TurretPrice;
+        public float AttackInterval;
     }
 }

@@ -21,6 +21,7 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
 
         private void OnEnable()
         {
+            _attackInterval = m_attackInterval;
             gameObject.layer = (int)LayerId.Enemy;
             m_health.OnDie += OnEnemyDie;
             StartCoroutine(StartDetectingRoutine());

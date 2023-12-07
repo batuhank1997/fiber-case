@@ -16,11 +16,14 @@ MonoBehaviour:
     Name: Turret 1
     Level: 1
     TurretPrice: 100
+    AttackInterval: 1
   Turret2Data:
     Name: Turret 2
     Level: 2
     TurretPrice: 300
+    AttackInterval: 0.7
   Turret3Data:
     Name: Turret 3
     Level: 3
     TurretPrice: 500
+    AttackInterval: 0.4

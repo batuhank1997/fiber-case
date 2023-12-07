@@ -4,6 +4,7 @@ using _Dev.Game.Scripts.Entities.Enemies.Base;
 using _Dev.Game.Scripts.Entities.Turrets.Base;
 using _Dev.Game.Scripts.Entities.Units;
 using _Dev.Game.Scripts.EventSystem;
+using _Dev.Game.Scripts.Factories;
 using _Dev.Game.Scripts.Managers;
 using _Dev.Game.Scripts.UI;
 using _Dev.Game.Scripts.UI.Views;
@@ -17,6 +18,7 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         [SerializeField] private List<TurretComponent> m_turrets;
         
         [SerializeField] private List<Transform> m_turretSpawnPoints;
+        [SerializeField] private Transform m_soldierSpawnPoint;
 
         private int _boughtTurretsAmount = 0;
         private const string TURRETS_AMOUNT_KEY = "turrets";
@@ -38,8 +40,8 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
             if (obj is not ObjectArguments args || (GameObject)args.Obj != gameObject) 
                 return;
             
-            var turretView = ViewFactory.GetOrCreate<BuyTurretView>() as BuyTurretView;
-            turretView.SetPanel(OnBuyTurret);
+            var buyView = ViewFactory.GetOrCreate<BuyView>() as BuyView;
+            buyView.SetPanel(OnBuyTurret, OnBuySoldier);
         }
 
         private void OnBuyTurret()
@@ -47,9 +49,25 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
             if (ResourcesManager.GetResource() < 100) 
                 return;
 
+            ResourcesManager.ConsumeResource(100);
             SpawnTurret();
         }
         
+        private void OnBuySoldier()
+        {
+            if (ResourcesManager.GetResource() < 100) 
+                return;
+            
+            ResourcesManager.ConsumeResource(100);
+            SpawnSoldier();
+        }
+
+        private void SpawnSoldier()
+        {
+            var soldier = SoldierFactory.Create();
+            soldier.transform.position = m_soldierSpawnPoint.position;
+        }
+
         private void SpawnTurret()
         {
             if (_boughtTurretsAmount >= m_turretSpawnPoints.Count)
