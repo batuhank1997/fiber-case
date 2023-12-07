@@ -100,5 +100,15 @@ namespace _Dev.Game.Scripts.Managers
             var wave = m_waves[_currentWaveIndex];
             return wave.Enemies.Count;
         }
+
+        public int GetTotalWaveCount()
+        {
+            return m_waves.Count;
+        }
+
+        public int GetCurrentWaveIndex()
+        {
+            return _currentWaveIndex + 1;
+        }
     }
 }
