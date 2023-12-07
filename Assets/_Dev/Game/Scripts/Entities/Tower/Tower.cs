@@ -7,7 +7,7 @@ namespace _Dev.Game.Scripts.Entities.Tower
 {
     public class Tower : Unit
     {
-        [SerializeField] private List<Turret> m_turrets;
+        [SerializeField] private List<TurretComponent> m_turrets;
         
         private void Start()
         {

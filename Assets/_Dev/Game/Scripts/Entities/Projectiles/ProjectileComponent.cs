@@ -29,10 +29,9 @@ namespace _Dev.Game.Scripts.Entities.Projectiles
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("OnTriggerEnter");
             var unit = other.GetComponent<Unit>();
             if (unit == null) return;
-            Debug.Log("Unit is not null");
+            
             _projectile.DealDamage(unit);
             Destroy(gameObject);
         }

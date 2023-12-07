@@ -2,6 +2,6 @@
 {
     public class BasicProjectile : Base.Projectile
     {
-        protected override int _damageAmount => 5;
+        protected override int _damageAmount => 15;
     }
 }
