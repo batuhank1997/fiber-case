@@ -15,6 +15,9 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
         [SerializeField] protected ProjectileComponent m_projectilePrefab;
         [SerializeField] protected Transform m_projectileSpawnPoint;
 
+        private int _turretLevel = 1;
+        private string _turretKey;
+
         protected override float _attackInterval
         {
             get => _turret.AttackInterval;
@@ -23,9 +26,11 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
 
         private Turret _turret;
         
-        public void Init()
+        public void Init(int index)
         {
-            SetTurret(new Turret1());
+            _turretKey = $"turret_{index}";
+            
+            SetTurret(LoadTurret());
             StartCoroutine(StartDetectingRoutine());
             EventSystemManager.AddListener(EventId.on_object_clicked, OnObjectClicked);
         }
@@ -38,6 +43,19 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
         public Turret GetTurret()
         {
             return _turret;
+        }
+        
+        private Turret LoadTurret()
+        {
+            _turretLevel = SaveManager.LoadValue(_turretKey, 1);
+
+            return _turretLevel switch
+            {
+                1 => new Turret1(),
+                2 => new Turret2(),
+                3 => new Turret3(),
+                _ => null
+            };
         }
 
         private void OnObjectClicked(EventArgs obj)
@@ -61,6 +79,8 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
 
             ResourcesManager.ConsumeResource(price);
             _turret = _turret.Upgrade();
+            _turretLevel = _turret.TurretData.Level;
+            SaveManager.SaveValue(_turretKey, _turretLevel);
             UpdateUpgradePanel();
         }
 

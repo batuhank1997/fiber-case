@@ -57,7 +57,7 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
             
             var turret = Instantiate(m_turretPrefab, m_turretSpawnPoints[_boughtTurretsAmount].position, Quaternion.identity);
             turret.transform.SetParent(transform);
-            turret.Init();
+            turret.Init(_boughtTurretsAmount);
             _boughtTurretsAmount++;
             m_turrets.Add(turret);
             SaveManager.SaveValue(TURRETS_AMOUNT_KEY, _boughtTurretsAmount);
