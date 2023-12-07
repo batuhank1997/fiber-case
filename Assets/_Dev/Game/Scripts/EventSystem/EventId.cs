@@ -11,5 +11,9 @@ namespace _Dev.Game.Scripts.EventSystem
         on_wave_ended = 11,
         on_enemy_died = 12,
         #endregion
+
+        on_resource_added,
+        on_resource_consumed,
+        on_resource_reset
     }
 }
