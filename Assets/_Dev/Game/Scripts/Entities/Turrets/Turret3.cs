@@ -4,6 +4,17 @@ namespace _Dev.Game.Scripts.Entities.Turrets
 {
     public class Turret3 : Turret
     {
+        public override TurretData TurretData { get; }
         public override Projectiles.Base.Projectile Projectile => new SuperProjectile();
+        
+        public Turret3()
+        {
+            TurretData = new TurretData
+            {
+                Name = "Turret 3",
+                Level = 3,
+                TurretPrice = 500
+            };
+        }
     }
 }
