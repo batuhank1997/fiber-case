@@ -1,4 +1,3 @@
-using System.Resources;
 using _Dev.Game.Scripts.Components;
 using _Dev.Game.Scripts.Entities.PlayerTower;
 using _Dev.Game.Scripts.Entities.Soldiers.Base;
@@ -13,6 +12,12 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
     public abstract class Enemy : Attacker
     {
         [SerializeField] private MoverComponent m_mover;
+
+        protected override float _attackInterval
+        {
+            get => m_attackInterval;
+            set => _delay = new WaitForSeconds(value);
+        }
 
         private void OnEnable()
         {

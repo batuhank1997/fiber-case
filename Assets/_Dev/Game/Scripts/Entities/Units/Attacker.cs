@@ -11,7 +11,9 @@ namespace _Dev.Game.Scripts.Entities.Units
         [SerializeField] protected float m_radius;
         
         protected Unit _target;
-        private readonly WaitForSeconds _detectInterval = new WaitForSeconds(1f);
+        protected WaitForSeconds _delay;
+        protected abstract float _attackInterval { get; set; }
+
         private const int _maxColliders = 10;
         
         protected abstract void Attack(Unit enemy);
@@ -22,7 +24,7 @@ namespace _Dev.Game.Scripts.Entities.Units
             while (true)
             {
                 Detect();
-                yield return _detectInterval;
+                yield return _delay;
             }
         }
         

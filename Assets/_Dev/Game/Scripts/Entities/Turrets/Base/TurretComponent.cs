@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using _Dev.Game.Scripts.Entities.Enemies.Base;
 using _Dev.Game.Scripts.Entities.Projectiles;
 using _Dev.Game.Scripts.Entities.Units;
@@ -15,7 +14,13 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
     {
         [SerializeField] protected ProjectileComponent m_projectilePrefab;
         [SerializeField] protected Transform m_projectileSpawnPoint;
-        
+
+        protected override float _attackInterval
+        {
+            get => _turret.AttackInterval;
+            set => _delay = new WaitForSeconds(value);
+        }
+
         private Turret _turret;
         
         public void Init()
@@ -46,6 +51,7 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
         private void SetTurret(Turret turret)
         {
             _turret = turret;
+            _attackInterval = _turret.AttackInterval;
         }
         
         private void UpgradeTurret()
@@ -63,7 +69,7 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
             var upgradePanel = ViewFactory.GetOrCreate<TurretUpgradeView>() as TurretUpgradeView;
             upgradePanel.SetPanel(this, UpgradeTurret);
         }
-
+        
         protected override void Attack(Unit enemy)
         {
             var projectile = Instantiate(m_projectilePrefab, m_projectileSpawnPoint.position, Quaternion.identity);

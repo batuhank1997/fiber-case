@@ -3,6 +3,7 @@
     public abstract class Turret
     {
         public abstract TurretData TurretData { get; }
+        public abstract float AttackInterval { get; }
         public abstract Projectiles.Base.Projectile Projectile { get; }
         
         public Turret Upgrade()
