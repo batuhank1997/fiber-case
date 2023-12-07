@@ -13,8 +13,6 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
         
         private Turret _turret;
         
-        private const int _maxColliders = 10;
-        
         public void Init()
         {
             SetTurret(new Turret1());
@@ -32,18 +30,9 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
             projectile.Init(_turret.Projectile, enemy.transform);
         }
         
-        protected override void Detect()
+        protected override bool IsAttackTarget(Unit unit)
         {
-            var hitColliders = new Collider[_maxColliders];
-            var size = Physics.OverlapSphereNonAlloc(transform.position, m_radius, hitColliders);
-
-            for (var i = 0; i < size; i++)
-            {
-                if (!hitColliders[i].TryGetComponent(out Enemy enemy)) continue;
-                
-                _target = enemy;
-                Attack(_target);
-            }
+           return unit is Enemy;
         }
     }
 }

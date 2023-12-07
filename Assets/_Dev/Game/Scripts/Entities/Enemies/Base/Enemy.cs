@@ -12,7 +12,6 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
     {
         [SerializeField] private MoverComponent m_mover;
         
-        private const int _maxColliders = 10;
 
         private void OnEnable()
         {
@@ -28,23 +27,10 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
         {
             m_mover.SetMoveTarget(null);
         }
-        
-        protected override void Detect()
+
+        protected override bool IsAttackTarget(Unit unit)
         {
-            var hitColliders = new Collider[_maxColliders];
-            var numColliders = Physics.OverlapSphereNonAlloc(transform.position, m_radius, hitColliders);
-            
-            for (var i = 0; i < numColliders; i++)
-            {
-                var col = hitColliders[i];
-
-                if (!col.TryGetComponent(out Unit unit)) continue;
-
-                if (unit is not Tower && unit is not Soldier) continue;
-                
-                _target = unit;
-                Attack(_target);
-            }
+            return unit is Tower or Soldier;
         }
     }
 }
