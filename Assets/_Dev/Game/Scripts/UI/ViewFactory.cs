@@ -7,7 +7,7 @@ namespace _Dev.Game.Scripts.UI
     {
         private static View _existingUIController;
 
-        public static View Create<T>() where T : View
+        public static View GetOrCreate<T>() where T : View
         {
             if (IsExists<T>())
                 return _existingUIController;

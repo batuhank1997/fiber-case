@@ -8,8 +8,8 @@ namespace _Dev.Game.Scripts.Managers
     {
         public void Initialize()
         {
-            ViewFactory.Create<ResourcesView>();
-            ViewFactory.Create<ProgressBarView>();
+            ViewFactory.GetOrCreate<ResourcesView>();
+            ViewFactory.GetOrCreate<ProgressBarView>();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace _Dev.Game.Scripts.UI.Views
         {
             EventSystemManager.AddListener(EventId.on_resource_added, UpdateResources);
             EventSystemManager.AddListener(EventId.on_resource_consumed, UpdateResources);
+            UpdateResources(default);
             base.OnEnable();
         }
 

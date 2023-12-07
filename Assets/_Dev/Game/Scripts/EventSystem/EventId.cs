@@ -12,8 +12,14 @@ namespace _Dev.Game.Scripts.EventSystem
         on_enemy_died = 12,
         #endregion
 
+        #region Resources
         on_resource_added,
         on_resource_consumed,
-        on_resource_reset
+        on_resource_reset,
+        #endregion
+
+        #region Input
+        on_object_clicked
+        #endregion
     }
 }
