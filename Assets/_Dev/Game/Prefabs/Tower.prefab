@@ -266,6 +266,9 @@ MonoBehaviour:
   - {fileID: 4505113368003600934}
   - {fileID: 4620740195232513309}
   m_soldierSpawnPoint: {fileID: 3823519134881205019}
+  m_towerMeshRenderer: {fileID: 8878249169212688994}
+  m_defaultMaterial: {fileID: 2100000, guid: 571a3a9f77cf6ca47ba520c230b2e93d, type: 2}
+  m_selectedMaterial: {fileID: 2100000, guid: 0f807b0b40e8a2a43826e20e540a3034, type: 2}
 --- !u!114 &8534449941091166354
 MonoBehaviour:
   m_ObjectHideFlags: 0

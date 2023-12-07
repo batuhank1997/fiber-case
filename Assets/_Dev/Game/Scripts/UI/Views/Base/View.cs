@@ -1,4 +1,4 @@
-using System;
+using _Dev.Game.Scripts.EventSystem;
 using UnityEngine;
 
 namespace _Dev.Game.Scripts.UI.Views.Base
@@ -7,11 +7,12 @@ namespace _Dev.Game.Scripts.UI.Views.Base
     {
         public virtual void Show()
         {
-            
+            EventSystemManager.InvokeEvent(EventId.on_view_shown, new TypeArguments(GetType()));
         }
         
         public virtual void Hide()
         {
+            EventSystemManager.InvokeEvent(EventId.on_view_closed, new TypeArguments(GetType()));
             Destroy(gameObject);
         }
         

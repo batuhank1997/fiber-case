@@ -13,13 +13,18 @@ namespace _Dev.Game.Scripts.EventSystem
         #endregion
 
         #region Resources
-        on_resource_added,
-        on_resource_consumed,
-        on_resource_reset,
+        on_resource_added = 20,
+        on_resource_consumed = 21,
+        on_resource_reset = 22,
         #endregion
 
         #region Input
-        on_object_clicked
+        on_object_clicked = 30,
+        #endregion
+
+        #region UI
+        on_view_shown = 40,
+        on_view_closed = 41,
         #endregion
     }
 }

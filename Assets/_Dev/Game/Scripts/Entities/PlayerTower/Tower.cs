@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using _Dev.Game.Scripts.Entities.Enemies.Base;
 using _Dev.Game.Scripts.Entities.Turrets.Base;
-using _Dev.Game.Scripts.Entities.Units;
 using _Dev.Game.Scripts.EventSystem;
 using _Dev.Game.Scripts.Factories;
 using _Dev.Game.Scripts.Managers;
 using _Dev.Game.Scripts.UI;
 using _Dev.Game.Scripts.UI.Views;
+using Unity.VisualScripting;
 using UnityEngine;
+using Unit = _Dev.Game.Scripts.Entities.Units.Unit;
 
 namespace _Dev.Game.Scripts.Entities.PlayerTower
 {
@@ -19,6 +20,10 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         
         [SerializeField] private List<Transform> m_turretSpawnPoints;
         [SerializeField] private Transform m_soldierSpawnPoint;
+        
+        [SerializeField] private MeshRenderer m_towerMeshRenderer;
+        [SerializeField] private Material m_defaultMaterial;
+        [SerializeField] private Material m_selectedMaterial;
 
         private int _boughtTurretsAmount = 0;
         private const string TURRETS_AMOUNT_KEY = "turrets";
@@ -28,20 +33,34 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
             SetLayer();
             InitTurrets();
             EventSystemManager.AddListener(EventId.on_object_clicked, OnObjectClick);
+            EventSystemManager.AddListener(EventId.on_view_closed, OnUIClosed);
         }
 
         private void OnDisable()
         {
             EventSystemManager.RemoveListener(EventId.on_object_clicked, OnObjectClick);
+            EventSystemManager.RemoveListener(EventId.on_view_closed, OnUIClosed);
         }
 
         private void OnObjectClick(EventArgs obj)
         {
-            if (obj is not ObjectArguments args || (GameObject)args.Obj != gameObject) 
+            if (obj is not ObjectArguments args || (GameObject)args.Obj != gameObject)
                 return;
             
+            SetMaterial(m_selectedMaterial);
             var buyView = ViewFactory.GetOrCreate<BuyView>() as BuyView;
             buyView.SetPanel(OnBuyTurret, OnBuySoldier);
+        }
+        
+        private void OnUIClosed(EventArgs obj)
+        {
+            if (((TypeArguments)obj).Type == typeof(BuyView))
+                SetMaterial(m_defaultMaterial);
+        }
+        
+        private void SetMaterial(Material material)
+        {
+            m_towerMeshRenderer.material = material;
         }
 
         private void OnBuyTurret()

@@ -14,6 +14,10 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
     {
         [SerializeField] protected ProjectileComponent m_projectilePrefab;
         [SerializeField] protected Transform m_projectileSpawnPoint;
+        
+        [SerializeField] private MeshRenderer m_turretMeshRenderer;
+        [SerializeField] private Material m_defaultMaterial;
+        [SerializeField] private Material m_selectedMaterial;
 
         private int _turretLevel = 1;
         private string _turretKey;
@@ -33,11 +37,13 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
             SetTurret(LoadTurret());
             StartCoroutine(StartDetectingRoutine());
             EventSystemManager.AddListener(EventId.on_object_clicked, OnObjectClicked);
+            EventSystemManager.AddListener(EventId.on_view_closed, OnUIClosed);
         }
 
         private void OnDestroy()
         {
             EventSystemManager.RemoveListener(EventId.on_object_clicked, OnObjectClicked);
+            EventSystemManager.RemoveListener(EventId.on_view_closed, OnUIClosed);
         }
         
         public Turret GetTurret()
@@ -63,7 +69,20 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
             if (obj is not ObjectArguments args || (GameObject)args.Obj != gameObject) 
                 return;
 
+            SetMaterial(m_selectedMaterial);
             UpdateUpgradePanel();
+        }
+        
+        
+        private void OnUIClosed(EventArgs obj)
+        {
+            if (((TypeArguments)obj).Type == typeof(TurretUpgradeView))
+                SetMaterial(m_defaultMaterial);
+        }
+
+        private void SetMaterial(Material selectedMaterial)
+        {
+            m_turretMeshRenderer.material = selectedMaterial;
         }
 
         private void SetTurret(Turret turret)
