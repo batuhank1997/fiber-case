@@ -45,7 +45,6 @@ namespace _Dev.Game.Scripts.Entities.Turrets.Base
         
         private void OnViewShown(EventArgs obj)
         {
-            Debug.Log("TURRET SHOWN");
             if (_upgradeView && ((TypeArguments)obj).Type == typeof(BuyView))
                 _upgradeView.Hide();
         }

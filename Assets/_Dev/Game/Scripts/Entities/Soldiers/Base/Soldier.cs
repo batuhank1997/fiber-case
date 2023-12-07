@@ -20,6 +20,7 @@ namespace _Dev.Game.Scripts.Entities.Soldiers.Base
         
         public void Init()
         {
+            _attackInterval = m_attackInterval;
             gameObject.layer = (int)LayerId.Player;
             StartCoroutine(StartDetectingRoutine());
         }
@@ -35,8 +36,6 @@ namespace _Dev.Game.Scripts.Entities.Soldiers.Base
 
         private void SearchEnemy()
         {
-            if (_target != null) return;
-
             var hitColliders = new Collider[10];
             var numColliders = Physics.OverlapSphereNonAlloc(transform.position, m_radius, hitColliders);
 
@@ -47,13 +46,17 @@ namespace _Dev.Game.Scripts.Entities.Soldiers.Base
                 if (!IsAttackTarget(unit)) continue;
 
                 _target = unit;
-                if (Vector3.Distance(_target.transform.position, transform.position) < m_attackRadius)
+                var distance = Vector3.Distance(transform.position, _target.transform.position);
+
+                if (distance < m_attackRadius)
                 {
                     m_mover.SetMoveTarget(null);
+                    Debug.Log("attack!!");
                     Attack(_target);
                 }
                 else
                 {
+                    Debug.Log("move!!");
                     m_mover.SetMoveTarget(_target.transform);
                 }
                 

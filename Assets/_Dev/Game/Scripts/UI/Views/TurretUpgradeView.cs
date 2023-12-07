@@ -26,7 +26,6 @@ namespace _Dev.Game.Scripts.UI.Views
 
         protected override void OnDisable()
         {
-            Debug.Log("VIEW CLOSED");
             m_upgradeButton.onClick.RemoveAllListeners();
             base.OnDisable();
         }
