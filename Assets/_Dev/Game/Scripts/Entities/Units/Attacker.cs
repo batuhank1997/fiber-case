@@ -14,7 +14,7 @@ namespace _Dev.Game.Scripts.Entities.Units
         protected WaitForSeconds _delay;
         protected abstract float _attackInterval { get; set; }
 
-        private const int _maxColliders = 10;
+        protected const int _maxColliders = 10;
         
         protected abstract void Attack(Unit enemy);
         protected abstract bool IsAttackTarget(Unit unit);

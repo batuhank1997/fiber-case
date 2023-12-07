@@ -36,13 +36,12 @@ namespace _Dev.Game.Scripts.Entities.Soldiers.Base
 
         private void SearchEnemy()
         {
-            var hitColliders = new Collider[10];
+            var hitColliders = new Collider[_maxColliders];
             var numColliders = Physics.OverlapSphereNonAlloc(transform.position, m_radius, hitColliders);
 
             for (var i = 0; i < numColliders; i++)
             {
                 if (!hitColliders[i].TryGetComponent(out Unit unit)) continue;
-
                 if (!IsAttackTarget(unit)) continue;
 
                 _target = unit;
@@ -55,10 +54,7 @@ namespace _Dev.Game.Scripts.Entities.Soldiers.Base
                     Attack(_target);
                 }
                 else
-                {
-                    Debug.Log("move!!");
                     m_mover.SetMoveTarget(_target.transform);
-                }
                 
                 break;
             }
