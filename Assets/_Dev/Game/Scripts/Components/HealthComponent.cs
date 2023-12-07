@@ -4,15 +4,23 @@ namespace _Dev.Game.Scripts.Components
 {
     public class HealthComponent : MonoBehaviour
     {
-        public int Value { get; private set; }
+        [SerializeField] private int m_value = 100;
 
         public void Damage(int amount)
         {
-            Value -= amount;
+            m_value -= amount;
+
+            if (m_value <= 0)
+                Die();
         }
         public void Heal(int amount)
         {
-            Value += amount;
+            m_value += amount;
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
         }
     }
 }

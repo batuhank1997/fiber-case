@@ -10,12 +10,12 @@ namespace _Dev.Game.Scripts.Entities.Units
         [SerializeField] protected float m_attackInterval;
         [SerializeField] protected int m_attackDamage;
         
-        protected abstract void Attack();
-        public IEnumerator StartAttackRoutine()
+        protected abstract void Attack(Unit enemy);
+        public IEnumerator StartAttackRoutine(Unit enemy)
         {
             while (true)
             {
-                Attack();
+                Attack(enemy);
                 yield return new WaitForSeconds(m_attackInterval);
             }
         }

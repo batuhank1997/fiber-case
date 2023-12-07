@@ -1,5 +1,6 @@
 using _Dev.Game.Scripts.Entities.Enemies.Base;
 using _Dev.Game.Scripts.Entities.Projectiles;
+using _Dev.Game.Scripts.Entities.Units;
 
 namespace _Dev.Game.Scripts.Entities.Enemies
 {
@@ -7,7 +8,7 @@ namespace _Dev.Game.Scripts.Entities.Enemies
     {
         private ProjectileComponent m_projectilePrefab;
 
-        protected override void Attack()
+        protected override void Attack(Unit enemy)
         {
             
         }

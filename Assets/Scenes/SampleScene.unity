@@ -596,6 +596,17 @@ Transform:
   m_Father: {fileID: 427512755}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1257385142 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4894011946306571634, guid: 3356ab958a9b69d4692d3e405d8c3699, type: 3}
+  m_PrefabInstance: {fileID: 2365287904936507268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfdb8ffb34f4281bf0484833759603f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1689495391
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +1001,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 804905426, guid: ddbe02ec6321d5a4abb9ec082609d43c, type: 3}
+      propertyPath: m_turrets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 804905426, guid: ddbe02ec6321d5a4abb9ec082609d43c, type: 3}
+      propertyPath: m_turrets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1257385142}
     - target: {fileID: 8878249169856046786, guid: ddbe02ec6321d5a4abb9ec082609d43c, type: 3}
       propertyPath: m_Name
       value: Tower

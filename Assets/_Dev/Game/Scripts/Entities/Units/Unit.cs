@@ -13,10 +13,5 @@ namespace _Dev.Game.Scripts.Entities.Units
         {
             return m_health;
         }
-
-        private void Die()
-        {
-            
-        }
     }
 }
