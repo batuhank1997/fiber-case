@@ -1,8 +1,10 @@
+using System.Resources;
 using _Dev.Game.Scripts.Components;
 using _Dev.Game.Scripts.Entities.PlayerTower;
 using _Dev.Game.Scripts.Entities.Soldiers.Base;
 using _Dev.Game.Scripts.Entities.Units;
 using _Dev.Game.Scripts.EventSystem;
+using _Dev.Game.Scripts.Managers;
 using UnityEngine;
 
 namespace _Dev.Game.Scripts.Entities.Enemies.Base
@@ -27,6 +29,7 @@ namespace _Dev.Game.Scripts.Entities.Enemies.Base
         private void OnEnemyDie()
         {
             EventSystemManager.InvokeEvent(EventId.on_enemy_died);
+            ResourcesManager.AddResource(100);
         }
 
         public void StartMoving(Transform target)
