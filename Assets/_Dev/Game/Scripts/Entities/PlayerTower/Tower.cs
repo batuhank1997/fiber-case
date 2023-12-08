@@ -26,6 +26,7 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
 
         private int _boughtTurretsAmount = 0;
         private BuyView _buyView;
+        
         private const string TURRETS_AMOUNT_KEY = "turrets";
         private const int SOLDIER_PRICE = 100;
         private const int TURRET_PRICE = 100;

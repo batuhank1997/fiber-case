@@ -47,7 +47,7 @@ namespace _Dev.Game.Scripts.Entities.Enemies
         protected override void Attack(Unit enemy)
         {
             enemy.GetHealth().Damage(50);
-            Destroy(gameObject);
+            m_health.OnDie?.Invoke();
         }
     }
 }
