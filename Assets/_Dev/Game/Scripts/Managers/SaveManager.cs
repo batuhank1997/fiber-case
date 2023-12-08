@@ -5,9 +5,9 @@ namespace _Dev.Game.Scripts.Managers
 {
     public class SaveManager : Singleton<SaveManager>
     {
-        public static int LoadValue(string key, int p1)
+        public static int LoadValue(string key, int defaultValue)
         {
-            return PlayerPrefs.GetInt(key, p1);
+            return PlayerPrefs.GetInt(key, defaultValue);
         }
 
         public static void SaveValue(string key, int newAmount)
