@@ -7,7 +7,6 @@ using _Dev.Game.Scripts.Factories;
 using _Dev.Game.Scripts.Managers;
 using _Dev.Game.Scripts.UI;
 using _Dev.Game.Scripts.UI.Views;
-using Unity.VisualScripting;
 using UnityEngine;
 using Unit = _Dev.Game.Scripts.Entities.Units.Unit;
 
@@ -26,8 +25,10 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         [SerializeField] private Material m_selectedMaterial;
 
         private int _boughtTurretsAmount = 0;
-        private const string TURRETS_AMOUNT_KEY = "turrets";
         private BuyView _buyView;
+        private const string TURRETS_AMOUNT_KEY = "turrets";
+        private const int SOLDIER_PRICE = 100;
+        private const int TURRET_PRICE = 100;
         
         private void OnEnable()
         {
@@ -76,19 +77,19 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
 
         private void OnBuyTurret()
         {
-            if (ResourcesManager.GetResource() < 100) 
+            if (ResourcesManager.GetResource() < TURRET_PRICE) 
                 return;
 
-            ResourcesManager.ConsumeResource(100);
+            ResourcesManager.ConsumeResource(TURRET_PRICE);
             SpawnTurret();
         }
         
         private void OnBuySoldier()
         {
-            if (ResourcesManager.GetResource() < 100) 
+            if (ResourcesManager.GetResource() < SOLDIER_PRICE) 
                 return;
             
-            ResourcesManager.ConsumeResource(100);
+            ResourcesManager.ConsumeResource(SOLDIER_PRICE);
             SpawnSoldier();
         }
 
