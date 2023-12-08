@@ -112,6 +112,11 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
             soldier.transform.position = m_soldierSpawnPoint.position;
             _boughtSoldiersAmount++;
             SaveManager.SaveValue(SOLDIER_AMOUNT_KEY, _boughtSoldiersAmount);
+            soldier.GetHealth().OnDie += () =>
+            {
+                _boughtSoldiersAmount--;
+                SaveManager.SaveValue(SOLDIER_AMOUNT_KEY, _boughtSoldiersAmount);
+            };
             soldier.Init();
         }
 

@@ -50,7 +50,6 @@ namespace _Dev.Game.Scripts.Entities.Soldiers.Base
                 if (distance < m_attackRadius)
                 {
                     m_mover.SetMoveTarget(null);
-                    Debug.Log("attack!!");
                     Attack(_target);
                 }
                 else
