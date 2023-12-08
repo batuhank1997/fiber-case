@@ -25,9 +25,11 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         [SerializeField] private Material m_selectedMaterial;
 
         private int _boughtTurretsAmount = 0;
+        private int _boughtSoldiersAmount = 0;
         private BuyView _buyView;
         
         private const string TURRETS_AMOUNT_KEY = "turrets";
+        private const string SOLDIER_AMOUNT_KEY = "soldiers";
         private const int SOLDIER_PRICE = 100;
         private const int TURRET_PRICE = 100;
         
@@ -35,11 +37,21 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         {
             SetLayer();
             InitTurrets();
+            InitSoldiers();
             EventSystemManager.AddListener(EventId.on_object_clicked, OnObjectClick);
             EventSystemManager.AddListener(EventId.on_view_shown, OnViewShown);
             EventSystemManager.AddListener(EventId.on_view_closed, OnUIClosed);
         }
-        
+
+        private void InitSoldiers()
+        {
+            var soldierAmount = SaveManager.LoadValue(SOLDIER_AMOUNT_KEY, 0);
+            
+            for (var i = 0; i < soldierAmount; i++)
+                SpawnSoldier();
+        }
+
+
         private void OnViewShown(EventArgs obj)
         {
             if (_buyView && ((TypeArguments)obj).Type == typeof(TurretUpgradeView))
@@ -98,6 +110,8 @@ namespace _Dev.Game.Scripts.Entities.PlayerTower
         {
             var soldier = SoldierFactory.Create();
             soldier.transform.position = m_soldierSpawnPoint.position;
+            _boughtSoldiersAmount++;
+            SaveManager.SaveValue(SOLDIER_AMOUNT_KEY, _boughtSoldiersAmount);
             soldier.Init();
         }
 
